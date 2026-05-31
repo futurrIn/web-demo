@@ -385,6 +385,26 @@ h1, h2, h3, h4 {
   }
 }
 
+@media (max-width: 768px) {
+  /* Make the Book Now button compact to save header real estate */
+  #headerBookBtn {
+    padding: 8px 16px;
+    font-size: 0.75rem;
+  }
+  
+  /* Hide search and profile icons from header on mobile to prevent overflow */
+  .header-actions #searchActionBtn,
+  .header-actions #profileActionBtn {
+    display: none;
+  }
+  
+  /* Reduce gap on small headers */
+  .header-actions {
+    gap: 8px;
+  }
+}
+
+
 /* ========================================================================
    HERO SECTION
    ======================================================================== */
