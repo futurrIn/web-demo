@@ -8,7 +8,7 @@
 // --- Google Sheets Deployed Apps Script Web App URL Endpoint ---
 // Paste your deployed Google Apps Script Web App URL here to connect the frontend to Google Sheets!
 // If left empty, the site automatically runs in offline/mock preview mode for styling/testing.
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyHgeph01mhhRgIEKDAVZ6FCyU4A24NJ0ARbmuKwGo/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7j1z7mtr5B8B_akLT5WKOof0fxJA2Ahv54Fbb4cHO-DhZEWA6K0K8UBfpvi8ZlLDI/exec";
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize general elements
