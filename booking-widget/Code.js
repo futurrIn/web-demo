@@ -323,6 +323,9 @@ function bookAppointment(data) {
     // FORCE commit to Google's backend servers before releasing lock!
     SpreadsheetApp.flush();
     
+    // Dispatch automated HTML confirmation email to patient
+    sendConfirmationEmail(data, nextToken, appointmentId, docSession.doctor_name);
+    
     return {
       success: true,
       appointment_id: appointmentId,
@@ -623,4 +626,94 @@ function testAll() {
   }
   
   console.log("--- ALL SANDBOX TEST LIFECYCLES COMPLETED SUCCESSFULLY (100% PASS) ---");
+}
+
+/**
+ * Builds a premium styled HTML confirmation email and sends it to the patient.
+ * Uses Google Apps Script's native GmailApp service.
+ * 
+ * @param {Object} data Booking request payload
+ * @param {number} token Assigned sequential queue token
+ * @param {string} appointmentId Distinct generated appointment ID
+ * @param {string} doctorName Consulting clinician name
+ */
+function sendConfirmationEmail(data, token, appointmentId, doctorName) {
+  if (!data.email || data.email.trim() === "") {
+    console.log("No email provided for appointment " + appointmentId + ". Skipping email dispatch.");
+    return;
+  }
+  
+  const subject = "Appointment Confirmed: Token #" + token + " - MEDTRUST Healthcare";
+  
+  // Premium, responsive HTML template branded with MEDTRUST colors and fonts
+  const htmlBody = `
+    <div style="font-family: 'Inter', -apple-system, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);">
+      <!-- Header Banner -->
+      <div style="background-color: #151B26; padding: 24px; text-align: center; color: #FFFFFF;">
+        <h2 style="margin: 0; font-weight: 700; letter-spacing: 0.05em; font-size: 20px; font-family: 'Outfit', sans-serif;">MEDTRUST</h2>
+        <span style="font-size: 11px; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;">Care & Clinical Dispatch</span>
+      </div>
+      
+      <!-- Content Body -->
+      <div style="padding: 32px; background-color: #FFFFFF; color: #0F172A; line-height: 1.6;">
+        <p style="font-size: 15px; margin-top: 0;">Dear <strong>${data.patient_name}</strong>,</p>
+        <p style="font-size: 14px; color: #475569;">
+          Thank you for choosing MEDTRUST. Your consultation request has been officially registered and locked in our clinical scheduler database.
+        </p>
+        
+        <!-- Confirmation Token Box -->
+        <div style="background-color: rgba(37, 99, 235, 0.03); border: 2px dashed #2563EB; border-radius: 12px; padding: 24px; text-align: center; margin: 24px 0;">
+          <span style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: #2563EB; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">Your Assigned Token</span>
+          <h2 style="font-size: 36px; font-weight: 900; color: #0F172A; margin: 0; line-height: 1;">Token #${token}</h2>
+          <p style="font-size: 13px; font-weight: 700; color: #16A34A; margin: 12px 0 0;">✓ Confirmed Reservation</p>
+        </div>
+        
+        <!-- Details Card -->
+        <h3 style="font-size: 14px; text-transform: uppercase; color: #475569; border-bottom: 1px solid #F1F5F9; padding-bottom: 8px; margin-bottom: 16px; margin-top: 32px; font-weight: 700;">Consultation Summary</h3>
+        <table style="width: 100%; font-size: 13px; border-collapse: collapse; color: #0F172A;">
+          <tr style="border-bottom: 1px solid #F8FAFC;">
+            <td style="padding: 10px 0; color: #475569;">Appointment ID:</td>
+            <td style="padding: 10px 0; text-align: right; font-weight: 700;">${appointmentId}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #F8FAFC;">
+            <td style="padding: 10px 0; color: #475569;">Assigned Clinician:</td>
+            <td style="padding: 10px 0; text-align: right; font-weight: 700;">${doctorName}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #F8FAFC;">
+            <td style="padding: 10px 0; color: #475569;">Care Department:</td>
+            <td style="padding: 10px 0; text-align: right; font-weight: 700;">${data.service || 'Standard Clinical Triage'}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #F8FAFC;">
+            <td style="padding: 10px 0; color: #475569;">Scheduled Date:</td>
+            <td style="padding: 10px 0; text-align: right; font-weight: 700;">${data.appointment_date}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 0; color: #475569;">Session Block:</td>
+            <td style="padding: 10px 0; text-align: right; font-weight: 700;">${data.session.toUpperCase()} Session</td>
+          </tr>
+        </table>
+        
+        <!-- Clinical Instructions -->
+        <div style="background-color: #F8FAFC; border-radius: 8px; padding: 16px; margin-top: 24px; font-size: 12px; color: #475569; line-height: 1.5; border-left: 4px solid #2563EB;">
+          <strong>Clinical Instruction:</strong> We use a sequential session token structure to optimize patient throughput and eliminate waiting room bottlenecks. Please log into the portal or arrive at the triage desk 10 minutes prior to your session block to settle pre-clinical checks.
+        </div>
+      </div>
+      
+      <!-- Footer -->
+      <div style="background-color: #F8FAFC; border-top: 1px solid #E2E8F0; padding: 24px; text-align: center; font-size: 11px; color: #94A3B8; line-height: 1.5;">
+        <p style="margin: 0;">&copy; 2026 MEDTRUST Healthcare Inc. All rights reserved.</p>
+        <p style="margin: 4px 0 0;">420 Pavilion Ave, Suite 100, New York, NY 10001 | Hotline: (800) 555-0199</p>
+      </div>
+    </div>
+  `;
+  
+  try {
+    GmailApp.sendEmail(data.email.trim(), subject, "", {
+      htmlBody: htmlBody,
+      name: "MEDTRUST Care Dispatch Desk"
+    });
+    console.log("Confirmation email successfully sent to: " + data.email);
+  } catch (e) {
+    console.error("Failed to send email: " + e.toString());
+  }
 }
