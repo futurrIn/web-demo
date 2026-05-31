@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEDTRUST - We Care for Your Health Every Day</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Access premium healthcare advice, personalized counseling, and 24/7 telehealth consultations at MEDTRUST. Dedicated to your family's daily well-being.">
+  <meta name="keywords" content="healthcare, medical counseling, online doctor consultation, partner therapy, pediatric care">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css?v=2.0">
+</head>
+<body>
+
+  <!-- ==========================================
+       SITE HEADER
+       ========================================== -->
+  <header class="site-header" id="mainHeader">
+    <div class="container header-container">
+      <!-- Logo -->
+      <a href="index.html" class="brand-logo" id="headerLogo">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        <span>MEDTRUST</span>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav class="nav-container">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="patients.html" class="nav-link">Patients</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Search Icon -->
+        <button class="action-btn" id="searchActionBtn" data-open-modal="searchModal" aria-label="Search site">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <!-- Profile Icon -->
+        <button class="action-btn" id="profileActionBtn" data-open-modal="loginModal" aria-label="User Account">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </button>
+        <!-- CTA button -->
+        <a href="patients.html#bookingSection" class="btn btn-dark btn-sans" id="headerBookBtn">Book Now</a>
+        
+        <!-- Hamburger Menu Toggle (Mobile) -->
+        <button class="mobile-nav-toggle" id="mobileNavToggler" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer Menu -->
+  <aside class="mobile-nav-drawer" id="mobileDrawer">
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="mobile-nav-link active">Home</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About Us</a></li>
+      <li><a href="services.html" class="mobile-nav-link">Services</a></li>
+      <li><a href="patients.html" class="mobile-nav-link">Patients</a></li>
+    </ul>
+    <div class="mobile-nav-footer">
+      <a href="patients.html#bookingSection" class="btn btn-dark btn-sans">Book Appointment</a>
+    </div>
+  </aside>
+
+  <!-- ==========================================
+       HERO SECTION
+       ========================================== -->
+  <main>
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <!-- Hero Text -->
+        <div class="hero-content">
+          <h1 class="hero-title" id="heroTitle">We care for Your <br><span>health every day</span></h1>
+          <p class="hero-description" id="heroDesc">
+            Access medical support that covers your family's needs. Talk to expert online doctors and certified psychologists from the comfort of your home.
+          </p>
+          <div class="hero-actions">
+            <a href="patients.html#bookingSection" class="btn btn-dark btn-sans" id="heroBookBtn">Book an Appointment</a>
+            <a href="about.html" class="btn btn-outline btn-sans" id="heroAboutBtn">Watch Video</a>
+          </div>
+          <!-- Statistics Row -->
+          <div class="hero-stats">
+            <div class="stat-item" id="statUsers">
+              <span class="stat-number">
+                <span class="stat-number-value" data-target="2140">0</span>+
+                <span class="stat-avatars">
+                  <img src="assets/images/support_agent.png" class="stat-avatar" alt="User 1">
+                  <img src="assets/images/patient_molecular.png" class="stat-avatar" alt="User 2">
+                  <img src="assets/images/hero_doctors.png" class="stat-avatar" alt="User 3">
+                </span>
+              </span>
+              <span class="stat-label">Active patients using our directory daily.</span>
+            </div>
+            <div class="stat-item" id="statDoctors">
+              <span class="stat-number">
+                <span class="stat-number-value" data-target="800">0</span>+
+              </span>
+              <span class="stat-label">Certified clinicians on active call.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Photo & Badge -->
+        <div class="hero-visual">
+          <div class="hero-image-wrapper">
+            <img src="assets/images/hero_doctors.png" alt="Friendly smiling doctors at MEDTRUST" id="heroImg">
+          </div>
+          <!-- Floating badge element -->
+          <div class="hero-floating-badge" id="heroFloatingBadge">
+            <span>Before <br>Service</span>
+            <div class="badge-arrow-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         UNDER-HERO CARD LAYOUT GRID
+         ========================================== -->
+    <section class="under-hero-cards" id="quickFeatures">
+      <div class="container grid-4col">
+        <!-- Card 1 (Mint Background) -->
+        <div class="feature-card highlight-mint" id="featCard1">
+          <div class="feature-card-image-wrapper">
+            <img src="assets/images/indian_family_health.png" alt="Comprehensive care for Indian families">
+            <div class="feature-card-content">
+              <div class="feature-card-header">
+                <div class="feature-icon-wrapper">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                  </svg>
+                </div>
+                <a href="services.html" class="feature-card-btn" aria-label="Go to service">↗</a>
+              </div>
+              <h3 class="feature-card-title">Comprehensive care for humans & families</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="feature-card" id="featCard2">
+          <div class="feature-card-image-wrapper">
+            <img src="assets/images/indian_pediatric_care.png" alt="Pediatric care and child development">
+            <div class="feature-card-content">
+              <div class="feature-card-header">
+                <div class="feature-icon-wrapper">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 8v8M8 12h8"/>
+                  </svg>
+                </div>
+                <a href="services.html" class="feature-card-btn" aria-label="Go to service">↗</a>
+              </div>
+              <h3 class="feature-card-title">Pediatric care & child development</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="feature-card highlight-yellow" id="featCard3">
+          <div class="feature-card-image-wrapper">
+            <img src="assets/images/indian_cardiologist.png" alt="Cardiology and heart diagnosis">
+            <div class="feature-card-content">
+              <div class="feature-card-header">
+                <div class="feature-icon-wrapper">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                  </svg>
+                </div>
+                <a href="services.html" class="feature-card-btn" aria-label="Go to service">↗</a>
+              </div>
+              <h3 class="feature-card-title">Cardiology & heart diagnosis</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="feature-card" id="featCard4">
+          <div class="feature-card-image-wrapper">
+            <img src="assets/images/indian_support_team.png" alt="Experienced clinical support team">
+            <div class="feature-card-content">
+              <div class="feature-card-header">
+                <div class="feature-icon-wrapper">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <a href="about.html" class="feature-card-btn" aria-label="Go to service">↗</a>
+              </div>
+              <h3 class="feature-card-title">Experienced clinical support team</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         THE ROAD TO COMPLETE WELL-BEING (COUNSELING)
+         ========================================== -->
+    <section class="section-padding" id="counselingSection">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="section-header">
+          <h2 class="section-title" id="counselingTitle">The Road to <br>Complete Well-being</h2>
+          <div class="section-header-right">
+            <p class="section-header-desc" id="counselingDesc">
+              Explore specialized support structures tailored to overcome anxiety, support transition cycles, and nurture interpersonal relationships with clinical empathy.
+            </p>
+            <a href="services.html" class="btn btn-dark btn-sans" id="counselingExploreBtn">Explore All Services</a>
+          </div>
+        </div>
+
+        <!-- 4-Card Counseling Grid -->
+        <div class="counseling-grid">
+          <!-- Counseling Card 1 -->
+          <article class="counseling-card" id="counselCard1">
+            <div class="counseling-card-top">
+              <div class="counseling-tags">
+                <span class="tag-label tag-mint">Therapy</span>
+                <span class="tag-label tag-white">Offices</span>
+              </div>
+              <h3 class="counseling-title">Partner Counseling</h3>
+              <p class="counseling-desc">Guiding relationships through effective communication matrices.</p>
+            </div>
+            <div class="counseling-image-wrapper">
+              <img src="assets/images/counseling_partner.png" alt="Couple in counseling session">
+              <a href="services.html" class="counseling-overlay-btn">Learn More ➔</a>
+            </div>
+          </article>
+
+          <!-- Counseling Card 2 -->
+          <article class="counseling-card" id="counselCard2">
+            <div class="counseling-card-top">
+              <div class="counseling-tags">
+                <span class="tag-label tag-mint">Mental</span>
+                <span class="tag-label tag-white">Sessions</span>
+              </div>
+              <h3 class="counseling-title">Emotion Therapy</h3>
+              <p class="counseling-desc">Nurturing behavioral shifts to alleviate chronic stress.</p>
+            </div>
+            <div class="counseling-image-wrapper">
+              <img src="assets/images/counseling_emotion.png" alt="One on one emotional therapy">
+              <a href="services.html" class="counseling-overlay-btn">Learn More ➔</a>
+            </div>
+          </article>
+
+          <!-- Counseling Card 3 -->
+          <article class="counseling-card" id="counselCard3">
+            <div class="counseling-card-top">
+              <div class="counseling-tags">
+                <span class="tag-label tag-mint">Children</span>
+                <span class="tag-label tag-white">Support</span>
+              </div>
+              <h3 class="counseling-title">Youth Counseling</h3>
+              <p class="counseling-desc">Supporting younger minds navigating social stressors.</p>
+            </div>
+            <div class="counseling-image-wrapper">
+              <img src="assets/images/counseling_youth.png" alt="Teens counselor speaking supportively">
+              <a href="services.html" class="counseling-overlay-btn">Learn More ➔</a>
+            </div>
+          </article>
+
+          <!-- Counseling Card 4 -->
+          <article class="counseling-card" id="counselCard4">
+            <div class="counseling-card-top">
+              <div class="counseling-tags">
+                <span class="tag-label tag-mint">Healing</span>
+                <span class="tag-label tag-white">Groups</span>
+              </div>
+              <h3 class="counseling-title">Recovery Therapy</h3>
+              <p class="counseling-desc">Empowering pathways to conquer lifestyle dependencies.</p>
+            </div>
+            <div class="counseling-image-wrapper">
+              <img src="assets/images/counseling_recovery.png" alt="Support group session sitting in circle">
+              <a href="services.html" class="counseling-overlay-btn">Learn More ➔</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         SUPPORT ANYTIME, ANYWHERE (TELEHEALTH)
+         ========================================== -->
+    <section class="support-section" id="supportSection">
+      <div class="container support-grid">
+        <!-- Left: Image showing telemedicine consultation -->
+        <div class="support-left-card" id="supportLeftCard">
+          <img src="assets/images/patient_virtual.png" alt="Telehealth virtual consultation session">
+        </div>
+
+        <!-- Right: Checklists and cards -->
+        <div class="support-right-content">
+          <h2 class="section-title" id="supportTitle">Support Anytime, <br>Anywhere</h2>
+          
+          <div class="support-list-wrapper">
+            <div class="support-list-item" id="supportListItem1">
+              <div class="check-circle">✓</div>
+              <span class="support-list-text">Simple Intake & Appointment Scheduling</span>
+            </div>
+            <div class="support-list-item" id="supportListItem2">
+              <div class="check-circle">✓</div>
+              <span class="support-list-text">Immediate Call Access with Certified Doctors</span>
+            </div>
+            <div class="support-list-item" id="supportListItem3">
+              <div class="check-circle">✓</div>
+              <span class="support-list-text">24/7 Virtual Support Delivery Network</span>
+            </div>
+          </div>
+
+          <!-- Small Split Grid -->
+          <div class="support-small-grid">
+            <div class="support-small-photo" id="supportSmallPhoto">
+              <img src="assets/images/counseling_youth.png" alt="Specialist in clinic">
+            </div>
+            <div class="support-yellow-box" id="supportYellowBox">
+              <h4 class="support-yellow-box-title">Get Virtual Appointment Scheduling</h4>
+              <a href="patients.html#bookingSection" class="btn btn-dark btn-sans" style="font-size: 0.75rem; padding: 10px 20px;">Book Now ➔</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         REACH OUT CALL TO ACTION (FOOTER CTA)
+         ========================================== -->
+    <section class="footer-cta-container" id="ctaSection">
+      <div class="container">
+        <div class="cta-banner">
+          <div class="cta-content">
+            <h2 class="cta-title" id="ctaTitle">Reach out for expert <br><span>care and support today</span></h2>
+            <p class="cta-desc" id="ctaDesc">
+              Our clinical dispatch assistants are ready to triage your request and match you with the exact specialist you need.
+            </p>
+            <div class="cta-buttons">
+              <a href="about.html#contactSection" class="btn btn-dark btn-sans" id="ctaContactBtn">Contact Us Today</a>
+              <a href="patients.html" class="btn-text btn-sans" id="ctaReadBtn">Read Patient Stories</a>
+            </div>
+          </div>
+          <div class="cta-image-wrapper">
+            <img src="assets/images/support_agent.png" alt="Helpful client support agent" id="ctaImg">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       SITE FOOTER
+       ========================================== -->
+  <footer class="site-footer" id="mainFooter">
+    <div class="container footer-grid">
+      <!-- Info Column -->
+      <div class="footer-info" id="footerColInfo">
+        <a href="index.html" class="brand-logo">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+          <span>MEDTRUST</span>
+        </a>
+        <p class="footer-desc">
+          Providing high-touch medical care and psychological consultations to maximize your daily well-being.
+        </p>
+      </div>
+
+      <!-- Links Column 1 -->
+      <div id="footerColLinks1">
+        <h4 class="footer-title">About Us</h4>
+        <ul class="footer-links">
+          <li><a href="about.html" class="footer-link">Our Story</a></li>
+          <li><a href="about.html#timelineSection" class="footer-link">Timeline</a></li>
+          <li><a href="about.html#doctorsSection" class="footer-link">Our Doctors</a></li>
+          <li><a href="patients.html#faqsSection" class="footer-link">FAQs</a></li>
+        </ul>
+      </div>
+
+      <!-- Links Column 2 -->
+      <div id="footerColLinks2">
+        <h4 class="footer-title">Support</h4>
+        <ul class="footer-links">
+          <li><a href="about.html#contactSection" class="footer-link">Help Desk</a></li>
+          <li><a href="patients.html" class="footer-link">Portal Care</a></li>
+          <li><a href="services.html" class="footer-link">Therapies</a></li>
+          <li><a href="about.html#contactSection" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact/Signup Column -->
+      <div class="footer-signup" id="footerColSignup">
+        <h4 class="footer-title">Office Hours</h4>
+        <div class="footer-contact-info">
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span>420 Pavilion Ave, Suite 100, New York, NY 10001</span>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.15 15.15 0 0 0 6.5 6.5l2.2-2.2c.27-.27.67-.36 1.01-.24 1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span>(800) 555-0199</span>
+          </div>
+        </div>
+
+        <form class="signup-form" id="newsletterForm">
+          <input type="email" placeholder="Your Email Address" class="signup-input" required aria-label="Email address for updates">
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+
+        <div class="social-links">
+          <a href="#" class="social-btn" aria-label="Facebook">FB</a>
+          <a href="#" class="social-btn" aria-label="Twitter">TW</a>
+          <a href="#" class="social-btn" aria-label="Instagram">IG</a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">LN</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="container footer-bottom">
+      <p>&copy; 2026 MEDTRUST Healthcare Inc. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       MODALS SYSTEM (SEARCH & LOGIN)
+       ========================================== -->
+  <!-- Search Modal -->
+  <div class="modal-overlay" id="searchModal">
+    <div class="modal-box">
+      <button class="modal-close-btn" data-close-modal>✕</button>
+      <h3 class="modal-title">Search MEDTRUST</h3>
+      <p class="modal-desc">Type queries to locate doctors, resources, or advice.</p>
+      <div style="display:flex; gap:10px;">
+        <input type="text" placeholder="Enter keywords..." class="form-input" style="flex-grow:1;">
+        <button class="btn btn-dark btn-sans" style="padding:10px 20px;">Search</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-box">
+      <button class="modal-close-btn" data-close-modal>✕</button>
+      <h3 class="modal-title">Patient Portal Login</h3>
+      <p class="modal-desc">Access clinical history, active appointments and billing files.</p>
+      <form style="display:flex; flex-direction:column; gap:16px;">
+        <div>
+          <label class="input-label">Email Address</label>
+          <input type="email" class="form-input" required>
+        </div>
+        <div>
+          <label class="input-label">Password</label>
+          <input type="password" class="form-input" required>
+        </div>
+        <button type="submit" class="btn btn-dark btn-sans" style="margin-top:10px;">Login Account</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Portal & Scheduling - MEDTRUST</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Welcome to the MEDTRUST Patient Hub. Download registration forms, browse diagnostic guidelines, or schedule your clinical appointments online.">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- ==========================================
+       SITE HEADER
+       ========================================== -->
+  <header class="site-header" id="mainHeader">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" id="headerLogo">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        </svg>
+        <span>MEDTRUST</span>
+      </a>
+      <nav class="nav-container">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="patients.html" class="nav-link active">Patients</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="action-btn" id="searchActionBtn" data-open-modal="searchModal" aria-label="Search site">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button class="action-btn" id="profileActionBtn" data-open-modal="loginModal" aria-label="User Account">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </button>
+        <a href="patients.html#bookingSection" class="btn btn-dark btn-sans" id="headerBookBtn">Book Now</a>
+        <button class="mobile-nav-toggle" id="mobileNavToggler" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer Menu -->
+  <aside class="mobile-nav-drawer" id="mobileDrawer">
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About Us</a></li>
+      <li><a href="services.html" class="mobile-nav-link">Services</a></li>
+      <li><a href="patients.html" class="mobile-nav-link active">Patients</a></li>
+    </ul>
+    <div class="mobile-nav-footer">
+      <a href="patients.html#bookingSection" class="btn btn-dark btn-sans">Book Appointment</a>
+    </div>
+  </aside>
+
+  <!-- ==========================================
+       PATIENTS HERO & RESOURCES SECTION
+       ========================================== -->
+  <main>
+    <section class="patients-hero" id="patientsHero" style="padding-bottom: 20px;">
+      <div class="container" style="text-align: center;">
+        <h1 class="about-hero-title">Patient Portal &<br><span>Appointment Scheduling</span></h1>
+        <p class="about-hero-desc" style="margin-left: auto; margin-right: auto;">
+          Access the MEDTRUST Patient Hub. Answer a few brief intake questions to book a digital consultation slot with
+          our certified specialists instantly.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         ACTIVE BOOKING CONTAINER (LOCAL STORAGE DRIVEN)
+         ========================================== -->
+    <div id="activeBookingContainer" style="display: none; margin-top: 40px; margin-bottom: 20px;">
+      <div class="container">
+        <div class="active-booking-card"
+          style="background: var(--color-white); border-radius: var(--radius-xl); border: 1px solid rgba(17, 24, 39, 0.08); box-shadow: 0 15px 35px rgba(17, 24, 39, 0.04); padding: 32px; display: flex; flex-direction: column; gap: 24px; position: relative;">
+          <!-- Header -->
+          <div
+            style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(17, 24, 39, 0.06); padding-bottom: 16px; flex-wrap: wrap; gap: 16px;">
+            <div>
+              <span
+                style="font-size: 0.75rem; font-weight: 800; color: #16A34A; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 8px;">
+                <span class="pulse-dot"
+                  style="width: 8px; height: 8px; background-color: #16A34A; border-radius: 50%; display: inline-block;"></span>
+                Active Scheduled Consultation
+              </span>
+              <h3 style="font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; margin: 6px 0 0;"
+                id="activeCardGreeting">Welcome back, Patient!</h3>
+            </div>
+            <button id="btnCancelActiveBooking"
+              style="font-size: 0.75rem; font-weight: 700; color: #EF4444; border: 1px solid rgba(239, 68, 68, 0.2); background-color: rgba(239, 68, 68, 0.02); padding: 10px 20px; border-radius: var(--radius-full); transition: var(--transition-fast);">Cancel
+              Appointment</button>
+          </div>
+
+          <!-- Info Grid -->
+          <div class="active-card-grid"
+            style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 32px; align-items: center;">
+            <!-- Left: Big Token -->
+            <div
+              style="background-color: rgba(37, 99, 235, 0.04); border: 2px dashed var(--color-teal-accent); border-radius: var(--radius-lg); padding: 24px; text-align: center;">
+              <span
+                style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--color-teal-accent); letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Your
+                Assigned Token</span>
+              <h2
+                style="font-size: 3.5rem; font-weight: 900; color: var(--color-text-primary); margin: 0; line-height: 1;"
+                id="activeCardToken">Token #4</h2>
+              <span style="font-size: 0.875rem; font-weight: 700; color: #16A34A; display: block; margin-top: 8px;"
+                id="activeCardApproxTime">Approx. 10:45 AM</span>
+            </div>
+
+            <!-- Right: Details list -->
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div
+                style="display: flex; justify-content: space-between; font-size: 0.875rem; border-bottom: 1px solid rgba(17, 24, 39, 0.04); padding-bottom: 8px;">
+                <span style="color: var(--color-text-secondary);">Selected Doctor:</span><strong id="activeCardDoctor"
+                  style="color: var(--color-text-primary);">-</strong></div>
+              <div
+                style="display: flex; justify-content: space-between; font-size: 0.875rem; border-bottom: 1px solid rgba(17, 24, 39, 0.04); padding-bottom: 8px;">
+                <span style="color: var(--color-text-secondary);">Appointment Date:</span><strong id="activeCardDate"
+                  style="color: var(--color-text-primary);">-</strong></div>
+              <div
+                style="display: flex; justify-content: space-between; font-size: 0.875rem; border-bottom: 1px solid rgba(17, 24, 39, 0.04); padding-bottom: 8px;">
+                <span style="color: var(--color-text-secondary);">Session Block:</span><strong id="activeCardTime"
+                  style="color: var(--color-text-primary);">-</strong></div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.875rem; padding-bottom: 4px;">
+                <span style="color: var(--color-text-secondary);">Department/Care:</span><strong id="activeCardService"
+                  style="color: var(--color-text-primary);">-</strong></div>
+            </div>
+          </div>
+
+          <div
+            style="border-top: 1px solid rgba(17, 24, 39, 0.06); padding-top: 16px; text-align: center; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+            <p style="font-size: 0.75rem; color: var(--color-text-light); margin: 0;">Please keep this browser window
+              open or download this receipt for physical clinic records.</p>
+            <button type="button" id="btnDownloadActiveReceipt"
+              style="font-size: 0.75rem; font-weight: 700; color: var(--color-text-primary); border: 1px solid rgba(17, 24, 39, 0.15); background-color: var(--color-white); padding: 8px 16px; border-radius: var(--radius-full); transition: var(--transition-fast); display: inline-flex; align-items: center; gap: 6px;">Download
+              Receipt <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         INTERACTIVE APPOINTMENT SCHEDULER WIZARD
+         ========================================== -->
+    <section class="wizard-section" id="bookingSection">
+      <div class="container">
+        <h2 class="section-subtitle-center" style="font-size: 2.25rem;">Schedule Your Consultation</h2>
+        <p class="section-desc-center">
+          Experience our simplified 4-step intake flow to schedule stethoscopic checking or psychiatric consults.
+        </p>
+
+        <!-- Wizard Card wrapper -->
+        <div class="wizard-card-wrapper" id="bookingWizard">
+          <!-- Wizard Steps Headers -->
+          <div class="wizard-header-steps">
+            <div class="wizard-step-node active" data-step="1">
+              <span class="step-num">1</span>
+              <span>Choose Care</span>
+            </div>
+            <div class="wizard-step-node" data-step="2">
+              <span class="step-num">2</span>
+              <span>Select Slot</span>
+            </div>
+            <div class="wizard-step-node" data-step="3">
+              <span class="step-num">3</span>
+              <span>Intake Info</span>
+            </div>
+            <div class="wizard-step-node" data-step="4">
+              <span class="step-num">4</span>
+              <span>Confirmed</span>
+            </div>
+          </div>
+
+          <!-- Wizard Panels Form Body -->
+          <div class="wizard-form-body">
+
+            <!-- STEP 1: Select Service & Doctor -->
+            <div class="wizard-step-panel active" data-step="1">
+              <h3 class="wizard-panel-title">Select Department & Clinician</h3>
+
+              <!-- Service select block -->
+              <span class="input-label">Select Medical Service</span>
+              <div class="select-grid" style="margin-bottom: 24px;">
+                <div class="select-card-option select-service-opt" data-value="Partner Counseling">
+                  <h4 class="select-option-title">Partner Counseling</h4>
+                  <span class="select-option-subtitle">$120 / Hour &bull; Relationship Therapy</span>
+                </div>
+                <div class="select-card-option select-service-opt" data-value="Emotion Therapy">
+                  <h4 class="select-option-title">Emotion Therapy</h4>
+                  <span class="select-option-subtitle">$100 / Hour &bull; Psychology Guidance</span>
+                </div>
+                <div class="select-card-option select-service-opt" data-value="Standard Clinical Triage">
+                  <h4 class="select-option-title">Standard Triage</h4>
+                  <span class="select-option-subtitle">$80 / Intake &bull; General Practitioner</span>
+                </div>
+                <div class="select-card-option select-service-opt" data-value="Cardiology Checkup">
+                  <h4 class="select-option-title">Cardiology Consult</h4>
+                  <span class="select-option-subtitle">$200 / Session &bull; Electrocardiogram</span>
+                </div>
+              </div>
+
+              <!-- Doctor select block -->
+              <span class="input-label">Select Doctor / Therapist</span>
+              <div class="select-grid" id="doctorSelectGrid">
+                <div class="select-card-option select-doctor-opt" data-value="Dr. Rajesh Sen (Cardiologist)">
+                  <h4 class="select-option-title">Dr. Rajesh Sen</h4>
+                  <span class="select-option-subtitle">Cardiology Specialist &bull; 15 Years Exp</span>
+                </div>
+                <div class="select-card-option select-doctor-opt" data-value="Dr. Ananya Iyer (Clinical Psychologist)">
+                  <h4 class="select-option-title">Dr. Ananya Iyer</h4>
+                  <span class="select-option-subtitle">Family & Couple Psychotherapist</span>
+                </div>
+                <div class="select-card-option select-doctor-opt" data-value="Dr. Vikram Nair (General Physician)">
+                  <h4 class="select-option-title">Dr. Vikram Nair</h4>
+                  <span class="select-option-subtitle">Pediatrician & General Practitioner</span>
+                </div>
+                <div class="select-card-option select-doctor-opt" data-value="First Available Clinician">
+                  <h4 class="select-option-title">First Available</h4>
+                  <span class="select-option-subtitle">Assigns the earliest open calendar slot</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 2: Session Slot Selection -->
+            <div class="wizard-step-panel" data-step="2">
+              <h3 class="wizard-panel-title">Choose Date & Session</h3>
+
+              <!-- Info Alert Banner -->
+              <div class="wizard-info-banner"
+                style="display: flex; gap: 12px; background-color: rgba(37, 99, 235, 0.05); border: 1px solid rgba(37, 99, 235, 0.1); border-radius: var(--radius-md); padding: 16px; margin-bottom: 24px; font-size: 0.8125rem; line-height: 1.5; color: var(--color-text-secondary);">
+                <span
+                  style="font-size: 1.25rem; font-weight: 800; color: var(--color-teal-accent); line-height: 1;">ℹ</span>
+                <p style="margin: 0;">
+                  <strong>No exact minute schedules:</strong> We use a session-based token system to avoid long waiting
+                  room times, as consult durations vary. Simply select a date and an AM or PM block.
+                </p>
+              </div>
+
+              <div class="calendar-widget-grid" style="margin-bottom: 24px;">
+                <!-- Month select header -->
+                <div class="calendar-month-selector" style="margin-bottom: 12px;">
+                  <span style="font-weight: 700; font-size: 1rem; color: var(--color-text-primary);">Select Consultation
+                    Date (June 2026)</span>
+                </div>
+
+                <!-- Days of week -->
+                <div class="calendar-day-grid">
+                  <span class="day-header">Mo</span>
+                  <span class="day-header">Tu</span>
+                  <span class="day-header">We</span>
+                  <span class="day-header">Th</span>
+                  <span class="day-header">Fr</span>
+                  <span class="day-header">Sa</span>
+                  <span class="day-header">Su</span>
+
+                  <!-- Days index nodes (1 to 21 active) -->
+                  <span class="calendar-day-node disabled">1</span>
+                  <span class="calendar-day-node disabled">2</span>
+                  <span class="calendar-day-node disabled">3</span>
+                  <span class="calendar-day-node">4</span>
+                  <span class="calendar-day-node">5</span>
+                  <span class="calendar-day-node disabled">6</span>
+                  <span class="calendar-day-node disabled">7</span>
+
+                  <span class="calendar-day-node">8</span>
+                  <span class="calendar-day-node">9</span>
+                  <span class="calendar-day-node">10</span>
+                  <span class="calendar-day-node">11</span>
+                  <span class="calendar-day-node">12</span>
+                  <span class="calendar-day-node disabled">13</span>
+                  <span class="calendar-day-node disabled">14</span>
+
+                  <span class="calendar-day-node">15</span>
+                  <span class="calendar-day-node">16</span>
+                  <span class="calendar-day-node">17</span>
+                  <span class="calendar-day-node">18</span>
+                  <span class="calendar-day-node">19</span>
+                  <span class="calendar-day-node disabled">20</span>
+                  <span class="calendar-day-node disabled">21</span>
+                </div>
+              </div>
+
+              <!-- Large tactile session plates selector -->
+              <div class="time-slots-wrapper">
+                <span class="time-slots-label"
+                  style="display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.05em; color: var(--color-text-secondary);">Select
+                  Available Session Block</span>
+                <div class="session-plate-grid">
+                  <!-- AM Plate -->
+                  <div class="session-plate-card select-session-opt" data-value="AM">
+                    <div class="session-plate-header">
+                      <h4 class="session-plate-title">AM Session</h4>
+                      <div class="session-radio-circle"></div>
+                    </div>
+                    <span class="session-plate-time">10:00 AM – 1:00 PM</span>
+                    <span class="session-plate-availability badge-avail">✓ Session Available</span>
+                  </div>
+
+                  <!-- PM Plate -->
+                  <div class="session-plate-card select-session-opt" data-value="PM">
+                    <div class="session-plate-header">
+                      <h4 class="session-plate-title">PM Session</h4>
+                      <div class="session-radio-circle"></div>
+                    </div>
+                    <span class="session-plate-time">3:00 PM – 6:00 PM</span>
+                    <span class="session-plate-availability badge-avail">✓ Session Available</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3: Intake details form -->
+            <div class="wizard-step-panel" data-step="3">
+              <h3 class="wizard-panel-title">Enter Patient Information</h3>
+
+              <div class="contact-form-grid">
+                <div>
+                  <label class="input-label" for="patientName">Full Legal Name</label>
+                  <input type="text" id="patientName" placeholder="e.g. Johnathan Carter" class="form-input" required>
+                </div>
+                <div>
+                  <label class="input-label" for="patientEmail">Email Address</label>
+                  <input type="email" id="patientEmail" placeholder="name@domain.com" class="form-input" required>
+                  <span class="error-msg" id="emailError"
+                    style="color: #EF4444; font-size: 0.725rem; display: none; margin-top: 4px; font-weight: 500;">Please
+                    enter a valid email address (e.g. name@domain.com)</span>
+                </div>
+                <div>
+                  <label class="input-label" for="patientPhone">Phone Number</label>
+                  <input type="tel" id="patientPhone" placeholder="e.g. 9876543210" class="form-input" required>
+                  <span class="error-msg" id="phoneError"
+                    style="color: #EF4444; font-size: 0.725rem; display: none; margin-top: 4px; font-weight: 500;">Please
+                    enter a valid 10-12 digit phone number</span>
+                </div>
+                <div class="form-group-full">
+                  <label class="input-label" for="consultReason">Brief Reason for consultation</label>
+                  <textarea id="consultReason"
+                    placeholder="Please list primary symptoms or goals for this therapy consult..."
+                    class="form-input"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 4: Confirmation screen -->
+            <div class="wizard-step-panel" data-step="4">
+              <div class="success-stamp">
+                <div class="success-icon-badge">✓</div>
+                <h3 class="success-stamp-title">Consultation Reserved</h3>
+                <p class="success-stamp-desc">
+                  Your appointment slot has been registered. An intake confirmation and digital video invite link have
+                  been dispatched to your email and phone inbox.
+                </p>
+
+                <!-- Token & Approximate Time Card -->
+                <div class="token-highlight-card"
+                  style="max-width: 500px; margin: 0 auto 32px; background-color: rgba(37, 99, 235, 0.05); border: 2px dashed var(--color-teal-accent); border-radius: var(--radius-lg); padding: 28px; text-align: center;">
+                  <span
+                    style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--color-teal-accent); letter-spacing: 0.05em; display: block; margin-bottom: 8px;">Your
+                    Scheduled Booking Token</span>
+                  <h2
+                    style="font-size: 3.5rem; font-family: var(--font-sans); font-weight: 900; color: var(--color-text-primary); margin: 0; line-height: 1;"
+                    id="summaryToken">Token #4</h2>
+                  <p style="font-size: 1.1rem; font-weight: 700; color: #16A34A; margin: 16px 0 0;"
+                    id="summaryApproxTime">Approximate Consultation Time: 10:45 AM</p>
+                  <p
+                    style="font-size: 0.8125rem; color: var(--color-text-secondary); margin: 8px 0 0; line-height: 1.5;">
+                    Please arrive 10 minutes before your approximate time for intake triage checks.</p>
+                </div>
+
+                <!-- Ticket Summary Card -->
+                <div class="wizard-summary-card">
+                  <div class="summary-row">
+                    <span class="summary-label">Selected Department</span>
+                    <span class="summary-value" id="summaryService">-</span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label">Assigned Clinician</span>
+                    <span class="summary-value" id="summaryDoctor">-</span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label">Confirmed Date</span>
+                    <span class="summary-value" id="summaryDate">-</span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label">Consult Hour</span>
+                    <span class="summary-value" id="summaryTime">-</span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label">Patient Name</span>
+                    <span class="summary-value" id="summaryName">-</span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label">Phone Number</span>
+                    <span class="summary-value" id="summaryPhone">-</span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label">Registered Email</span>
+                    <span class="summary-value" id="summaryEmail">-</span>
+                  </div>
+                </div>
+
+                <div style="margin-top: 32px;">
+                  <button type="button" id="btnDownloadWizardReceipt" class="btn btn-outline btn-sans"
+                    style="display: inline-flex; align-items: center; gap: 8px;">Download Receipt <svg width="16"
+                      height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="7 10 12 15 17 10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg></button>
+                  <a href="index.html" class="btn btn-dark btn-sans" style="margin-left: 16px;">Go to Dashboard</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Wizard Footer Navigation panel -->
+          <div class="wizard-footer-nav">
+            <button type="button" class="btn btn-outline btn-sans" id="wizardPrevBtn">Back</button>
+            <button type="button" class="btn btn-dark btn-sans" id="wizardNextBtn" disabled>Next Step</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PATIENT PORTAL FAQS ACCORDION
+         ========================================== -->
+    <section class="faqs-section" id="faqsSection">
+      <div class="container">
+        <h2 class="section-subtitle-center">Frequently Asked Questions</h2>
+        <p class="section-desc-center">
+          Find instant answers below detailing online intake rules, video guidelines, and payment networks.
+        </p>
+
+        <!-- Accordion wrapper -->
+        <div class="accordion-wrapper">
+          <!-- FAQ 1 -->
+          <div class="accordion-item" id="faq1">
+            <div class="accordion-header">
+              <span>How do I prepare for my first virtual psychology session?</span>
+              <span class="accordion-chevron">▼</span>
+            </div>
+            <div class="accordion-body">
+              Make sure you have a stable high-speed internet connection and are sitting in a quiet, confidential space.
+              Log in via our patient portal link 10 minutes prior to your scheduled consultation hour. Have your legal
+              identification documents ready in case our clinicians need to cross-check records.
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="accordion-item" id="faq2">
+            <div class="accordion-header">
+              <span>What health insurance networks does MEDTRUST accept?</span>
+              <span class="accordion-chevron">▼</span>
+            </div>
+            <div class="accordion-body">
+              We work with a large spectrum of major clinical insurance providers including Aetna, Cigna, Blue Cross
+              Blue Shield, and UnitedHealthcare. If your specific plan requires co-payments, you will be prompted to
+              settle these securely via email prior to starting your telemetry call.
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="accordion-item" id="faq3">
+            <div class="accordion-header">
+              <span>Can I cancel or reschedule my telehealth appointment?</span>
+              <span class="accordion-chevron">▼</span>
+            </div>
+            <div class="accordion-body">
+              Yes. You can easily reschedule or cancel any scheduled consultation up to 24 hours prior to your scheduled
+              time without incurring any penalty. Simply access the Patient Portal link from your dashboard or click the
+              cancellation link in your intake email.
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="accordion-item" id="faq4">
+            <div class="accordion-header">
+              <span>How are prescriptions handled during video consultations?</span>
+              <span class="accordion-chevron">▼</span>
+            </div>
+            <div class="accordion-body">
+              If your assigned MEDTRUST clinician diagnoses an active symptom requiring medication, they can issue
+              verified electronic prescriptions instantly. These will be sent securely to your local pharmacy for local
+              pickup.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       SITE FOOTER
+       ========================================== -->
+  <footer class="site-footer" id="mainFooter">
+    <div class="container footer-grid">
+      <div class="footer-info">
+        <a href="index.html" class="brand-logo">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+          <span>MEDTRUST</span>
+        </a>
+        <p class="footer-desc">
+          Providing high-touch medical care and psychological consultations to maximize your daily well-being.
+        </p>
+      </div>
+      <div>
+        <h4 class="footer-title">About Us</h4>
+        <ul class="footer-links">
+          <li><a href="about.html" class="footer-link">Our Story</a></li>
+          <li><a href="about.html#timelineSection" class="footer-link">Timeline</a></li>
+          <li><a href="about.html#doctorsSection" class="footer-link">Our Doctors</a></li>
+          <li><a href="patients.html#faqsSection" class="footer-link">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Support</h4>
+        <ul class="footer-links">
+          <li><a href="about.html#contactSection" class="footer-link">Help Desk</a></li>
+          <li><a href="patients.html" class="footer-link">Portal Care</a></li>
+          <li><a href="services.html" class="footer-link">Therapies</a></li>
+          <li><a href="about.html#contactSection" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-signup">
+        <h4 class="footer-title">Office Hours</h4>
+        <div class="footer-contact-info">
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+            </svg>
+            <span>420 Pavilion Ave, Suite 100, New York, NY 10001</span>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M6.62 10.79a15.15 15.15 0 0 0 6.5 6.5l2.2-2.2c.27-.27.67-.36 1.01-.24 1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+            </svg>
+            <span>(800) 555-0199</span>
+          </div>
+        </div>
+        <form class="signup-form" id="newsletterForm">
+          <input type="email" placeholder="Your Email Address" class="signup-input" required
+            aria-label="Email address for updates">
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+        <div class="social-links">
+          <a href="#" class="social-btn" aria-label="Facebook">FB</a>
+          <a href="#" class="social-btn" aria-label="Twitter">TW</a>
+          <a href="#" class="social-btn" aria-label="Instagram">IG</a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">LN</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 MEDTRUST Healthcare Inc. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       MODALS SYSTEM (SEARCH & LOGIN)
+       ========================================== -->
+  <!-- Search Modal -->
+  <div class="modal-overlay" id="searchModal">
+    <div class="modal-box">
+      <button class="modal-close-btn" data-close-modal>✕</button>
+      <h3 class="modal-title">Search MEDTRUST</h3>
+      <p class="modal-desc">Type queries to locate doctors, resources, or advice.</p>
+      <div style="display:flex; gap:10px;">
+        <input type="text" placeholder="Enter keywords..." class="form-input" style="flex-grow:1;">
+        <button class="btn btn-dark btn-sans" style="padding:10px 20px;">Search</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-box">
+      <button class="modal-close-btn" data-close-modal>✕</button>
+      <h3 class="modal-title">Patient Portal Login</h3>
+      <p class="modal-desc">Access clinical history, active appointments and billing files.</p>
+      <form style="display:flex; flex-direction:column; gap:16px;">
+        <div>
+          <label class="input-label">Email Address</label>
+          <input type="email" class="form-input" required>
+        </div>
+        <div>
+          <label class="input-label">Password</label>
+          <input type="password" class="form-input" required>
+        </div>
+        <button type="submit" class="btn btn-dark btn-sans" style="margin-top:10px;">Login Account</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

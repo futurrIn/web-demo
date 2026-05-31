@@ -1,0 +1,746 @@
+/* 
+========================================================================
+   PORTABLE CLINICAL SCHEDULER WIDGET STYLESHEET
+   Clean, Scoped, Responsive Theme Driven by Harmonious Colors
+======================================================================== 
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=Outfit:wght@300..900&display=swap');
+
+/* --- Design Variables --- */
+:root {
+  --w-color-bg-base: #F8FAFC;
+  --w-color-text-primary: #0F172A;
+  --w-color-text-secondary: #475569;
+  --w-color-text-light: #94A3B8;
+  
+  --w-color-teal-accent: #2563EB;
+  --w-color-teal-dark: #1E40AF;
+  --w-color-mint-light: #DBEAFE;
+  
+  --w-color-green-success: #16A34A;
+  --w-color-red-danger: #EF4444;
+  
+  --w-color-white: #FFFFFF;
+  --w-color-border: rgba(17, 24, 39, 0.08);
+  --w-color-shadow: rgba(17, 24, 39, 0.04);
+  
+  --w-font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --w-font-serif: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --w-radius-sm: 8px;
+  --w-radius-md: 16px;
+  --w-radius-lg: 24px;
+  --w-radius-xl: 32px;
+  --w-radius-full: 9999px;
+
+  --w-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Resets for Container --- */
+.widget-body {
+  margin: 0;
+  padding: 16px;
+  font-family: var(--w-font-sans);
+  background-color: transparent;
+  color: var(--w-color-text-primary);
+  line-height: 1.5;
+}
+
+.widget-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.widget-container *, 
+.widget-container *::before, 
+.widget-container *::after {
+  box-sizing: border-box;
+}
+
+/* --- Buttons System --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: var(--w-radius-full);
+  font-weight: 700;
+  font-size: 0.875rem;
+  transition: var(--w-transition);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.btn-dark {
+  background-color: var(--w-color-text-primary);
+  color: var(--w-color-white);
+}
+
+.btn-dark:hover {
+  background-color: var(--w-color-teal-accent);
+  transform: translateY(-1px);
+}
+
+.btn-dark:disabled {
+  background-color: var(--w-color-text-light);
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--w-color-text-primary);
+  border: 1px solid rgba(15, 23, 42, 0.15);
+}
+
+.btn-outline:hover {
+  background-color: rgba(15, 23, 42, 0.03);
+  border-color: var(--w-color-text-primary);
+}
+
+.btn-cancel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--w-color-red-danger);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  background-color: rgba(239, 68, 68, 0.02);
+  padding: 8px 16px;
+  border-radius: var(--w-radius-full);
+  transition: var(--w-transition);
+  cursor: pointer;
+}
+
+.btn-cancel:hover {
+  background-color: var(--w-color-red-danger);
+  color: var(--w-color-white);
+}
+
+.btn-download {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--w-color-text-primary);
+  border: 1px solid rgba(17, 24, 39, 0.15);
+  background-color: var(--w-color-white);
+  padding: 8px 16px;
+  border-radius: var(--w-radius-full);
+  transition: var(--w-transition);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-download:hover {
+  background-color: rgba(17, 24, 39, 0.03);
+  transform: translateY(-1px);
+}
+
+/* ========================================================================
+   Active Pinned Booking Card
+   ======================================================================== */
+.active-booking-card {
+  background: var(--w-color-white);
+  border-radius: var(--w-radius-xl);
+  border: 1px solid var(--w-color-border);
+  box-shadow: 0 10px 30px var(--w-color-shadow);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.active-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(17, 24, 39, 0.06);
+  padding-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.active-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--w-color-green-success);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--w-color-green-success);
+  border-radius: 50%;
+  animation: pulse-green-glow 2s infinite;
+}
+
+.active-greeting {
+  font-family: var(--w-font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 4px 0 0;
+}
+
+.active-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 20px;
+  align-items: center;
+}
+
+@media (max-width: 576px) {
+  .active-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.token-box {
+  background-color: rgba(37, 99, 235, 0.04);
+  border: 2px dashed var(--w-color-teal-accent);
+  border-radius: var(--w-radius-lg);
+  padding: 20px;
+  text-align: center;
+}
+
+.token-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--w-color-teal-accent);
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.token-number {
+  font-size: 2.75rem;
+  font-weight: 900;
+  color: var(--w-color-text-primary);
+  margin: 0;
+  line-height: 1;
+}
+
+.token-time {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--w-color-green-success);
+  display: block;
+  margin-top: 6px;
+}
+
+.details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.details-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  border-bottom: 1px solid rgba(17, 24, 39, 0.04);
+  padding-bottom: 6px;
+}
+
+.detail-label {
+  color: var(--w-color-text-secondary);
+}
+
+.detail-value {
+  color: var(--w-color-text-primary);
+}
+
+.active-card-footer {
+  border-top: 1px solid rgba(17, 24, 39, 0.06);
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-note {
+  font-size: 0.7rem;
+  color: var(--w-color-text-light);
+  margin: 0;
+}
+
+/* ========================================================================
+   Booking Wizard Layout & Container
+   ======================================================================== */
+.wizard-card-wrapper {
+  background: var(--w-color-white);
+  border-radius: var(--w-radius-xl);
+  border: 1px solid var(--w-color-border);
+  box-shadow: 0 15px 35px var(--w-color-shadow);
+  padding: 28px;
+}
+
+@media (max-width: 576px) {
+  .wizard-card-wrapper {
+    padding: 16px;
+  }
+}
+
+/* --- Wizard steps header node --- */
+.wizard-header-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  border-bottom: 1px solid rgba(17, 24, 39, 0.06);
+  padding-bottom: 16px;
+  overflow-x: auto;
+  gap: 12px;
+}
+
+.wizard-step-node {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--w-color-text-light);
+  flex-shrink: 0;
+}
+
+.wizard-step-node.active {
+  color: var(--w-color-text-primary);
+}
+
+.wizard-step-node.completed {
+  color: var(--w-color-green-success);
+}
+
+.step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: rgba(17, 24, 39, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--w-color-text-secondary);
+  transition: var(--w-transition);
+}
+
+.wizard-step-node.active .step-num {
+  background-color: var(--w-color-teal-accent);
+  color: var(--w-color-white);
+}
+
+.wizard-step-node.completed .step-num {
+  background-color: rgba(22, 163, 74, 0.1);
+  color: var(--w-color-green-success);
+}
+
+/* --- Steps panels form content --- */
+.wizard-step-panel {
+  display: none;
+}
+
+.wizard-step-panel.active {
+  display: block;
+}
+
+.wizard-panel-title {
+  font-family: var(--w-font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0 0 20px;
+}
+
+/* --- Custom select options (Cards) --- */
+.input-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+  color: var(--w-color-text-secondary);
+}
+
+.select-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.select-card-option {
+  border: 1px solid var(--w-color-border);
+  border-radius: var(--w-radius-md);
+  padding: 16px;
+  background-color: var(--w-color-white);
+  transition: var(--w-transition);
+  cursor: pointer;
+}
+
+.select-card-option:hover {
+  border-color: var(--w-color-text-primary);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  transform: translateY(-1px);
+}
+
+.select-card-option.selected {
+  background-color: rgba(37, 99, 235, 0.03);
+  border-color: var(--w-color-teal-accent);
+  box-shadow: 0 0 0 1px var(--w-color-teal-accent);
+}
+
+.select-option-title {
+  font-family: var(--w-font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.select-option-subtitle {
+  font-size: 0.75rem;
+  color: var(--w-color-text-secondary);
+}
+
+/* ========================================================================
+   Step 2: Calendar & Slots layout
+   ======================================================================== */
+.wizard-info-banner {
+  display: flex;
+  gap: 10px;
+  background-color: rgba(37, 99, 235, 0.04);
+  border: 1px solid rgba(37, 99, 235, 0.08);
+  border-radius: var(--w-radius-md);
+  padding: 14px;
+  margin-bottom: 20px;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--w-color-text-secondary);
+}
+
+.info-icon {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--w-color-teal-accent);
+  line-height: 1;
+}
+
+.calendar-widget-grid {
+  border: 1px solid var(--w-color-border);
+  border-radius: var(--w-radius-md);
+  padding: 16px;
+  background: var(--w-color-white);
+}
+
+.month-title {
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--w-color-text-primary);
+}
+
+.calendar-day-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.day-header {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--w-color-text-light);
+  padding-bottom: 4px;
+}
+
+.calendar-day-node {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  border-radius: var(--w-radius-sm);
+  cursor: pointer;
+  transition: var(--w-transition);
+  background-color: rgba(17, 24, 39, 0.02);
+}
+
+.calendar-day-node:hover {
+  background-color: var(--w-color-text-primary);
+  color: var(--w-color-white);
+}
+
+.calendar-day-node.disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.calendar-day-node.selected {
+  background-color: var(--w-color-teal-accent) !important;
+  color: var(--w-color-white) !important;
+}
+
+/* --- AM/PM Tactile Session Cards --- */
+.session-plate-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 576px) {
+  .session-plate-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.session-plate-card {
+  border: 1px solid var(--w-color-border);
+  border-radius: var(--w-radius-md);
+  padding: 16px;
+  cursor: pointer;
+  background-color: var(--w-color-white);
+  transition: var(--w-transition);
+}
+
+.session-plate-card:hover {
+  border-color: var(--w-color-text-primary);
+}
+
+.session-plate-card.selected {
+  border-color: var(--w-color-teal-accent);
+  background-color: rgba(37, 99, 235, 0.02);
+}
+
+.session-plate-card.selected .session-radio-circle {
+  border-color: var(--w-color-teal-accent);
+  background-color: var(--w-color-teal-accent);
+  box-shadow: inset 0 0 0 3px var(--w-color-white);
+}
+
+.session-plate-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.session-plate-title {
+  font-family: var(--w-font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.session-radio-circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--w-color-text-light);
+  transition: var(--w-transition);
+}
+
+.session-plate-time {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--w-color-text-secondary);
+  margin-bottom: 10px;
+}
+
+.badge-avail {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--w-color-green-success);
+  background-color: rgba(22, 163, 74, 0.06);
+  padding: 4px 8px;
+  border-radius: var(--w-radius-sm);
+  display: inline-block;
+}
+
+/* ========================================================================
+   Step 3: Intake Intake Form
+   ======================================================================== */
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 576px) {
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group-full {
+  grid-column: span 2;
+}
+
+@media (max-width: 576px) {
+  .form-group-full {
+    grid-column: span 1;
+  }
+}
+
+.form-input {
+  width: 100%;
+  border: 1px solid var(--w-color-border);
+  border-radius: var(--w-radius-md);
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  color: var(--w-color-text-primary);
+  background-color: var(--w-color-bg-base);
+  transition: var(--w-transition);
+}
+
+.form-input:focus {
+  border-color: var(--w-color-teal-accent);
+  background-color: var(--w-color-white);
+  box-shadow: 0 0 0 1px var(--w-color-teal-accent);
+}
+
+textarea.form-input {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* ========================================================================
+   Step 4: Success & Confirmed Summary Page
+   ======================================================================== */
+.success-stamp {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.success-icon-badge {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: rgba(22, 163, 74, 0.08);
+  color: var(--w-color-green-success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0 auto 16px;
+}
+
+.success-stamp-title {
+  font-family: var(--w-font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.success-stamp-desc {
+  font-size: 0.8125rem;
+  color: var(--w-color-text-secondary);
+  max-width: 500px;
+  margin: 0 auto 24px;
+  line-height: 1.5;
+}
+
+.token-highlight-card {
+  max-width: 500px;
+  margin: 0 auto 24px;
+  background-color: rgba(37, 99, 235, 0.04);
+  border: 2px dashed var(--w-color-teal-accent);
+  border-radius: var(--w-radius-lg);
+  padding: 24px;
+  text-align: center;
+}
+
+.token-highlight-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--w-color-teal-accent);
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.token-highlight-number {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--w-color-text-primary);
+  margin: 0;
+  line-height: 1;
+}
+
+.token-highlight-time {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--w-color-green-success);
+  margin: 12px 0 0;
+}
+
+.token-highlight-notice {
+  font-size: 0.725rem;
+  color: var(--w-color-text-secondary);
+  margin: 6px 0 0;
+  line-height: 1.4;
+}
+
+/* --- Ticket summary rows --- */
+.wizard-summary-card {
+  max-width: 500px;
+  margin: 0 auto;
+  border: 1px solid var(--w-color-border);
+  border-radius: var(--w-radius-md);
+  padding: 16px;
+  text-align: left;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  border-bottom: 1px solid rgba(17, 24, 39, 0.04);
+  padding: 6px 0;
+}
+
+.summary-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.summary-label {
+  color: var(--w-color-text-secondary);
+}
+
+.summary-value {
+  font-weight: 700;
+  color: var(--w-color-text-primary);
+}
+
+/* --- Pulse green animation keyframes --- */
+@keyframes pulse-green-glow {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(22, 163, 74, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
+  }
+}

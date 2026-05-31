@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEDTRUST Clinical Appointment Booking Widget</title>
+  <!-- Scoped Styling -->
+  <link rel="stylesheet" href="css/widget.css">
+</head>
+
+<body class="widget-body">
+
+  <div class="widget-container">
+
+    <!-- ==========================================
+         ACTIVE BOOKING CONTAINER (LOCAL STORAGE DRIVEN)
+         ========================================== -->
+    <div id="activeBookingContainer" style="display: none; margin-bottom: 32px;">
+      <div class="active-booking-card">
+        <!-- Header -->
+        <div class="active-card-header">
+          <div>
+            <span class="active-badge">
+              <span class="pulse-dot"></span>
+              Active Scheduled Consultation
+            </span>
+            <h3 class="active-greeting" id="activeCardGreeting">Welcome back, Patient!</h3>
+          </div>
+          <button type="button" id="btnCancelActiveBooking" class="btn-cancel">Cancel Appointment</button>
+        </div>
+
+        <!-- Info Grid -->
+        <div class="active-card-grid">
+          <!-- Left: Big Token -->
+          <div class="token-box">
+            <span class="token-label">Your Assigned Token</span>
+            <h2 class="token-number" id="activeCardToken">Token #4</h2>
+            <span class="token-time" id="activeCardApproxTime">Approx. 10:45 AM</span>
+          </div>
+
+          <!-- Right: Details list -->
+          <div class="details-list">
+            <div class="details-row"><span class="detail-label">Selected Doctor:</span><strong id="activeCardDoctor"
+                class="detail-value">-</strong></div>
+            <div class="details-row"><span class="detail-label">Appointment Date:</span><strong id="activeCardDate"
+                class="detail-value">-</strong></div>
+            <div class="details-row"><span class="detail-label">Session Block:</span><strong id="activeCardTime"
+                class="detail-value">-</strong></div>
+            <div class="details-row"><span class="detail-label">Department/Care:</span><strong id="activeCardService"
+                class="detail-value">-</strong></div>
+          </div>
+        </div>
+
+        <div class="active-card-footer">
+          <p class="footer-note">Please keep this browser window open or download this receipt for physical clinic
+            records.</p>
+          <button type="button" id="btnDownloadActiveReceipt" class="btn-download">Download Receipt 📥</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         INTERACTIVE APPOINTMENT SCHEDULER WIZARD
+         ========================================== -->
+    <section class="wizard-section" id="bookingSection">
+      <!-- Wizard Card wrapper -->
+      <div class="wizard-card-wrapper" id="bookingWizard">
+        <!-- Wizard Steps Headers -->
+        <div class="wizard-header-steps">
+          <div class="wizard-step-node active" data-step="1">
+            <span class="step-num">1</span>
+            <span>Choose Care</span>
+          </div>
+          <div class="wizard-step-node" data-step="2">
+            <span class="step-num">2</span>
+            <span>Select Slot</span>
+          </div>
+          <div class="wizard-step-node" data-step="3">
+            <span class="step-num">3</span>
+            <span>Intake Info</span>
+          </div>
+          <div class="wizard-step-node" data-step="4">
+            <span class="step-num">4</span>
+            <span>Confirmed</span>
+          </div>
+        </div>
+
+        <!-- Wizard Panels Form Body -->
+        <div class="wizard-form-body">
+
+          <!-- STEP 1: Select Service & Doctor -->
+          <div class="wizard-step-panel active" data-step="1">
+            <h3 class="wizard-panel-title">Select Department & Clinician</h3>
+
+            <!-- Service select block -->
+            <span class="input-label">Select Medical Service</span>
+            <div class="select-grid" style="margin-bottom: 24px;">
+              <div class="select-card-option select-service-opt" data-value="Partner Counseling">
+                <h4 class="select-option-title">Partner Counseling</h4>
+                <span class="select-option-subtitle">$120 / Hour &bull; Relationship Therapy</span>
+              </div>
+              <div class="select-card-option select-service-opt" data-value="Emotion Therapy">
+                <h4 class="select-option-title">Emotion Therapy</h4>
+                <span class="select-option-subtitle">$100 / Hour &bull; Psychology Guidance</span>
+              </div>
+              <div class="select-card-option select-service-opt" data-value="Standard Clinical Triage">
+                <h4 class="select-option-title">Standard Triage</h4>
+                <span class="select-option-subtitle">$80 / Intake &bull; General Practitioner</span>
+              </div>
+              <div class="select-card-option select-service-opt" data-value="Cardiology Checkup">
+                <h4 class="select-option-title">Cardiology Consult</h4>
+                <span class="select-option-subtitle">$200 / Session &bull; Electrocardiogram</span>
+              </div>
+            </div>
+
+            <!-- Doctor select block -->
+            <span class="input-label">Select Doctor / Therapist</span>
+            <div class="select-grid" id="doctorSelectGrid">
+              <!-- Dynamically populated from Google Sheets -->
+            </div>
+          </div>
+
+          <!-- STEP 2: Session Slot Selection -->
+          <div class="wizard-step-panel" data-step="2">
+            <h3 class="wizard-panel-title">Choose Date & Session</h3>
+
+            <div class="wizard-info-banner">
+              <span class="info-icon">ℹ</span>
+              <p>
+                <strong>No exact minute schedules:</strong> We use a session-based token system to avoid long waiting
+                room times. Simply select a date and an AM or PM block.
+              </p>
+            </div>
+
+            <div class="calendar-widget-grid" style="margin-bottom: 24px;">
+              <div class="calendar-month-selector">
+                <span class="month-title">Select Consultation Date (June 2026)</span>
+              </div>
+
+              <!-- Days of week -->
+              <div class="calendar-day-grid">
+                <span class="day-header">Mo</span>
+                <span class="day-header">Tu</span>
+                <span class="day-header">We</span>
+                <span class="day-header">Th</span>
+                <span class="day-header">Fr</span>
+                <span class="day-header">Sa</span>
+                <span class="day-header">Su</span>
+
+                <!-- June Days index nodes -->
+                <span class="calendar-day-node disabled">1</span>
+                <span class="calendar-day-node disabled">2</span>
+                <span class="calendar-day-node disabled">3</span>
+                <span class="calendar-day-node">4</span>
+                <span class="calendar-day-node">5</span>
+                <span class="calendar-day-node disabled">6</span>
+                <span class="calendar-day-node disabled">7</span>
+
+                <span class="calendar-day-node">8</span>
+                <span class="calendar-day-node">9</span>
+                <span class="calendar-day-node">10</span>
+                <span class="calendar-day-node">11</span>
+                <span class="calendar-day-node">12</span>
+                <span class="calendar-day-node disabled">13</span>
+                <span class="calendar-day-node disabled">14</span>
+
+                <span class="calendar-day-node">15</span>
+                <span class="calendar-day-node">16</span>
+                <span class="calendar-day-node">17</span>
+                <span class="calendar-day-node">18</span>
+                <span class="calendar-day-node">19</span>
+                <span class="calendar-day-node disabled">20</span>
+                <span class="calendar-day-node disabled">21</span>
+              </div>
+            </div>
+
+            <!-- Large tactile session plates selector -->
+            <div class="time-slots-wrapper">
+              <span class="time-slots-label">Select Available Session Block</span>
+              <div class="session-plate-grid">
+                <!-- AM Plate -->
+                <div class="session-plate-card select-session-opt" data-value="AM">
+                  <div class="session-plate-header">
+                    <h4 class="session-plate-title">AM Session</h4>
+                    <div class="session-radio-circle"></div>
+                  </div>
+                  <span class="session-plate-time">10:00 AM – 1:00 PM</span>
+                  <span class="session-plate-availability badge-avail">✓ Session Available</span>
+                </div>
+
+                <!-- PM Plate -->
+                <div class="session-plate-card select-session-opt" data-value="PM">
+                  <div class="session-plate-header">
+                    <h4 class="session-plate-title">PM Session</h4>
+                    <div class="session-radio-circle"></div>
+                  </div>
+                  <span class="session-plate-time">3:00 PM – 6:00 PM</span>
+                  <span class="session-plate-availability badge-avail">✓ Session Available</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: Intake details form -->
+          <div class="wizard-step-panel" data-step="3">
+            <h3 class="wizard-panel-title">Enter Patient Information</h3>
+
+            <div class="contact-form-grid">
+              <div>
+                <label class="input-label" for="patientName">Full Legal Name</label>
+                <input type="text" id="patientName" placeholder="e.g. Johnathan Carter" class="form-input" required>
+              </div>
+              <div>
+                <label class="input-label" for="patientEmail">Email Address</label>
+                <input type="email" id="patientEmail" placeholder="name@domain.com" class="form-input" required>
+                <span class="error-msg" id="emailError"
+                  style="color: #EF4444; font-size: 0.725rem; display: none; margin-top: 4px; font-weight: 500;">Please
+                  enter a valid email address (e.g. name@domain.com)</span>
+              </div>
+              <div>
+                <label class="input-label" for="patientPhone">Phone Number</label>
+                <input type="tel" id="patientPhone" placeholder="e.g. 9876543210" class="form-input" required>
+                <span class="error-msg" id="phoneError"
+                  style="color: #EF4444; font-size: 0.725rem; display: none; margin-top: 4px; font-weight: 500;">Please
+                  enter a valid 10-12 digit phone number</span>
+              </div>
+              <div class="form-group-full">
+                <label class="input-label" for="consultReason">Brief Reason for consultation</label>
+                <textarea id="consultReason" placeholder="Please list primary symptoms or reasons for visit..."
+                  class="form-input"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 4: Confirmation screen -->
+          <div class="wizard-step-panel" data-step="4">
+            <div class="success-stamp">
+              <div class="success-icon-badge">✓</div>
+              <h3 class="success-stamp-title">Consultation Reserved</h3>
+              <p class="success-stamp-desc">
+                Your appointment slot has been registered. An intake confirmation and digital video invite link have
+                been dispatched to your email and phone inbox.
+              </p>
+
+              <!-- Token & Approximate Time Card -->
+              <div class="token-highlight-card">
+                <span class="token-highlight-label">Your Scheduled Booking Token</span>
+                <h2 class="token-highlight-number" id="summaryToken">Token #4</h2>
+                <p class="token-highlight-time" id="summaryApproxTime">Approximate Consultation Time: 10:45 AM</p>
+                <p class="token-highlight-notice">Please arrive 10 minutes before your approximate time for intake
+                  triage checks.</p>
+              </div>
+
+              <!-- Ticket Summary Card -->
+              <div class="wizard-summary-card">
+                <div class="summary-row">
+                  <span class="summary-label">Selected Department</span>
+                  <span class="summary-value" id="summaryService">-</span>
+                </div>
+                <div class="summary-row">
+                  <span class="summary-label">Assigned Clinician</span>
+                  <span class="summary-value" id="summaryDoctor">-</span>
+                </div>
+                <div class="summary-row">
+                  <span class="summary-label">Confirmed Date</span>
+                  <span class="summary-value" id="summaryDate">-</span>
+                </div>
+                <div class="summary-row">
+                  <span class="summary-label">Consult Hour</span>
+                  <span class="summary-value" id="summaryTime">-</span>
+                </div>
+                <div class="summary-row">
+                  <span class="summary-label">Patient Name</span>
+                  <span class="summary-value" id="summaryName">-</span>
+                </div>
+                <div class="summary-row">
+                  <span class="summary-label">Phone Number</span>
+                  <span class="summary-value" id="summaryPhone">-</span>
+                </div>
+                <div class="summary-row">
+                  <span class="summary-label">Registered Email</span>
+                  <span class="summary-value" id="summaryEmail">-</span>
+                </div>
+              </div>
+
+              <div class="success-actions" style="margin-top: 32px; text-align: center;">
+                <button type="button" id="btnDownloadWizardReceipt" class="btn btn-outline"
+                  style="padding: 12px 28px; font-weight: 700; border-radius: 99px;">Download Receipt 📥</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Wizard Footer Navigation panel -->
+        <div class="wizard-footer-nav"
+          style="border-top: 1px solid rgba(0,0,0,0.06); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; margin-top: 24px;">
+          <button type="button" class="btn btn-outline" id="wizardPrevBtn">Back</button>
+          <button type="button" class="btn btn-dark" id="wizardNextBtn" disabled>Next Step</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="js/widget.js"></script>
+</body>
+
+</html>

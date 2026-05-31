@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - The MEDTRUST Vision & Doctors</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Meet MEDTRUST's world-class clinical team. Explore our history timeline, medical values, and directly inquire with our patient support desk.">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================
+       SITE HEADER
+       ========================================== -->
+  <header class="site-header" id="mainHeader">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" id="headerLogo">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        <span>MEDTRUST</span>
+      </a>
+      <nav class="nav-container">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link active">About Us</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="patients.html" class="nav-link">Patients</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="action-btn" id="searchActionBtn" data-open-modal="searchModal" aria-label="Search site">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button class="action-btn" id="profileActionBtn" data-open-modal="loginModal" aria-label="User Account">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </button>
+        <a href="patients.html#bookingSection" class="btn btn-dark btn-sans" id="headerBookBtn">Book Now</a>
+        <button class="mobile-nav-toggle" id="mobileNavToggler" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer Menu -->
+  <aside class="mobile-nav-drawer" id="mobileDrawer">
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+      <li><a href="about.html" class="mobile-nav-link active">About Us</a></li>
+      <li><a href="services.html" class="mobile-nav-link">Services</a></li>
+      <li><a href="patients.html" class="mobile-nav-link">Patients</a></li>
+    </ul>
+    <div class="mobile-nav-footer">
+      <a href="patients.html#bookingSection" class="btn btn-dark btn-sans">Book Appointment</a>
+    </div>
+  </aside>
+
+  <!-- ==========================================
+       ABOUT HERO & VALUES SECTION
+       ========================================== -->
+  <main>
+    <section class="about-hero" id="aboutHero">
+      <div class="container">
+        <h1 class="about-hero-title">Dedicated to Caring for<br><span>Your Health Every Day</span></h1>
+        <p class="about-hero-desc">
+          Founded on core principles of clinical empathy, modern diagnostic speed, and personalized wellness models, MEDTRUST coordinates premium wellness daily.
+        </p>
+
+        <!-- Core Values Row -->
+        <div class="values-grid">
+          <!-- Compassion -->
+          <div class="value-card" id="valueCard1">
+            <div class="value-icon">♥</div>
+            <h3 class="value-title">Clinical Empathy</h3>
+            <p class="value-desc">
+              Every counseling session or checkup is built around active listening, validating emotional parameters, and comfortable environments.
+            </p>
+          </div>
+
+          <!-- Medical Excellence -->
+          <div class="value-card" id="valueCard2">
+            <div class="value-icon">★</div>
+            <h3 class="value-title">Scientific Precision</h3>
+            <p class="value-desc">
+              We leverage modern molecular diagnostics, cardiac tracking, and psychological protocols to customize treatment programs.
+            </p>
+          </div>
+
+          <!-- Trust & Privacy -->
+          <div class="value-card" id="valueCard3">
+            <div class="value-icon">🛡</div>
+            <h3 class="value-title">Absolute Confidences</h3>
+            <p class="value-desc">
+              We implement industry-grade encryption models and strict HIPAA compliances to fully shield and secure patient histories.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         MEDTRUST HISTORY TIMELINE SECTION
+         ========================================== -->
+    <section class="timeline-section" id="timelineSection">
+      <div class="container">
+        <h2 class="section-subtitle-center">Our Historic Pathway</h2>
+        <p class="section-desc-center">
+          How we expanded from a single family counseling clinic to a nationwide telemedicine and multi-disciplinary healthcare leader.
+        </p>
+
+        <!-- Timeline container -->
+        <div class="timeline-container">
+          <!-- Timeline Item 1 -->
+          <div class="timeline-item" id="timeNode1">
+            <div class="timeline-year">2012</div>
+            <h4 class="timeline-title">The Foundation Clinic</h4>
+            <p class="timeline-desc">
+              MEDTRUST began as a focused psychological counseling service in New York, specializing in behavioral modifications and couple support.
+            </p>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="timeline-item" id="timeNode2">
+            <div class="timeline-year">2017</div>
+            <h4 class="timeline-title">Clinical Expansion</h4>
+            <p class="timeline-desc">
+              We expanded our healthcare network by incorporating general practitioners, clinical cardiologists, and pediatric departments.
+            </p>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="timeline-item" id="timeNode3">
+            <div class="timeline-year">2021</div>
+            <h4 class="timeline-title">Telehealth Revolution</h4>
+            <p class="timeline-desc">
+              Launched 24/7 video diagnostics dispatching. Allowed remote patients instant clinical intake via mobile web triages.
+            </p>
+          </div>
+
+          <!-- Timeline Item 4 -->
+          <div class="timeline-item" id="timeNode4">
+            <div class="timeline-year">2026</div>
+            <h4 class="timeline-title">The Modern Vision</h4>
+            <p class="timeline-desc">
+              Operating 12 active physical medical facilities, with over 800 certified specialists and AI-matched clinical assignments.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         DOCTORS TEAM SECTION
+         ========================================== -->
+    <section class="doctors-section" id="doctorsSection">
+      <div class="container">
+        <h2 class="section-subtitle-center">Our Specialized Clinical Leadership</h2>
+        <p class="section-desc-center">
+          Tap each doctor to view certified clinical specializations, histories, and appointment availability slots.
+        </p>
+
+        <div class="doctors-grid">
+          <!-- Doctor 1 -->
+          <div class="doctor-card" data-open-modal="doctorBioModal1" id="docCard1">
+            <div class="doctor-img-wrapper">
+              <img src="assets/images/doctor_rajesh.png" alt="Dr. Rajesh Sen">
+            </div>
+            <div class="doctor-info-box">
+              <h3 class="doctor-name">Dr. Rajesh Sen</h3>
+              <span class="doctor-specialty">Cardiology Director</span>
+            </div>
+          </div>
+
+          <!-- Doctor 2 -->
+          <div class="doctor-card" data-open-modal="doctorBioModal2" id="docCard2">
+            <div class="doctor-img-wrapper">
+              <img src="assets/images/doctor_ananya.png" alt="Dr. Ananya Iyer">
+            </div>
+            <div class="doctor-info-box">
+              <h3 class="doctor-name">Dr. Ananya Iyer</h3>
+              <span class="doctor-specialty">Psychotherapy Lead</span>
+            </div>
+          </div>
+
+          <!-- Doctor 3 -->
+          <div class="doctor-card" data-open-modal="doctorBioModal3" id="docCard3">
+            <div class="doctor-img-wrapper">
+              <img src="assets/images/doctor_vikram.png" alt="Dr. Vikram Nair">
+            </div>
+            <div class="doctor-info-box">
+              <h3 class="doctor-name">Dr. Vikram Nair</h3>
+              <span class="doctor-specialty">General Medicine</span>
+            </div>
+          </div>
+
+          <!-- Doctor 4 -->
+          <div class="doctor-card" data-open-modal="doctorBioModal4" id="docCard4">
+            <div class="doctor-img-wrapper">
+              <img src="assets/images/doctor_sunita.png" alt="Dr. Sunita Sharma">
+            </div>
+            <div class="doctor-info-box">
+              <h3 class="doctor-name">Dr. Sunita Sharma</h3>
+              <span class="doctor-specialty">Pediatrics Specialist</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         CLINIC CONTACT DETAILS & INTAKE FORM
+         ========================================== -->
+    <section class="section-padding" id="contactSection">
+      <div class="container">
+        <h2 class="section-subtitle-center">Get in Touch with Us</h2>
+        <p class="section-desc-center">
+          Have specific inquiries regarding therapy plans, insurance networks, or medical records? Send us a clinical ticket.
+        </p>
+
+        <div class="contact-section-inner">
+          <!-- Left Details Panel -->
+          <div class="contact-left-details" id="contactPanelLeft">
+            <div class="contact-details-top">
+              <h3 class="contact-title-white">Contact Information</h3>
+              <p style="font-size:0.875rem; color:var(--color-text-light);">
+                Our supportive administrative agents will review your message within 2 business hours.
+              </p>
+              
+              <div class="contact-details-list">
+                <div class="contact-list-card">
+                  <div class="contact-card-icon">☏</div>
+                  <div class="contact-card-info">
+                    <span class="contact-card-label">Primary Hotline</span>
+                    <span class="contact-card-text">(800) 555-0199</span>
+                  </div>
+                </div>
+                <div class="contact-list-card">
+                  <div class="contact-card-icon">✉</div>
+                  <div class="contact-card-info">
+                    <span class="contact-card-label">General Support Email</span>
+                    <span class="contact-card-text">support@medtrust.org</span>
+                  </div>
+                </div>
+                <div class="contact-list-card">
+                  <div class="contact-card-icon">⚲</div>
+                  <div class="contact-card-info">
+                    <span class="contact-card-label">Main Facility Location</span>
+                    <span class="contact-card-text">420 Pavilion Ave, NYC</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Operational Hours -->
+            <div>
+              <span class="contact-card-label" style="display:block; margin-bottom: 8px;">Clinic Open Hours</span>
+              <p style="font-size:0.875rem; font-weight:600;">Mon - Fri: 08:00 AM - 08:00 PM</p>
+              <p style="font-size:0.875rem; color:var(--color-text-light);">Sat - Sun: Emergencies Triage Only</p>
+            </div>
+          </div>
+
+          <!-- Right Form Panel -->
+          <form class="contact-right-form" id="contactForm">
+            <h3 class="form-title">Send a Secure Message</h3>
+            
+            <div class="contact-form-grid">
+              <div>
+                <label class="input-label" for="contactName">Your Name</label>
+                <input type="text" id="contactName" placeholder="e.g. Marie Carter" class="form-input" required>
+              </div>
+              <div>
+                <label class="input-label" for="contactEmail">Email Address</label>
+                <input type="email" id="contactEmail" placeholder="marie@domain.com" class="form-input" required>
+              </div>
+              <div>
+                <label class="input-label" for="contactPhone">Phone Number</label>
+                <input type="tel" id="contactPhone" placeholder="(555) 000-0000" class="form-input">
+              </div>
+              <div>
+                <label class="input-label" for="contactSubject">Subject of Inquiry</label>
+                <select id="contactSubject" class="form-input" style="height:50px;">
+                  <option value="appointments">Appointment Rescheduling</option>
+                  <option value="insurance">Insurance Networks & Coverage</option>
+                  <option value="records">Medical Record Request</option>
+                  <option value="other">General Department Questions</option>
+                </select>
+              </div>
+              <div class="form-group-full">
+                <label class="input-label" for="contactMsg">Message / Inquiry Details</label>
+                <textarea id="contactMsg" placeholder="Please provide specific parameters to assist our dispatch agents..." class="form-input" required></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-dark btn-sans contact-submit-btn">Send Secure Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       SITE FOOTER
+       ========================================== -->
+  <footer class="site-footer" id="mainFooter">
+    <div class="container footer-grid">
+      <div class="footer-info">
+        <a href="index.html" class="brand-logo">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+          <span>MEDTRUST</span>
+        </a>
+        <p class="footer-desc">
+          Providing high-touch medical care and psychological consultations to maximize your daily well-being.
+        </p>
+      </div>
+      <div>
+        <h4 class="footer-title">About Us</h4>
+        <ul class="footer-links">
+          <li><a href="about.html" class="footer-link">Our Story</a></li>
+          <li><a href="about.html#timelineSection" class="footer-link">Timeline</a></li>
+          <li><a href="about.html#doctorsSection" class="footer-link">Our Doctors</a></li>
+          <li><a href="patients.html#faqsSection" class="footer-link">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Support</h4>
+        <ul class="footer-links">
+          <li><a href="about.html#contactSection" class="footer-link">Help Desk</a></li>
+          <li><a href="patients.html" class="footer-link">Portal Care</a></li>
+          <li><a href="services.html" class="footer-link">Therapies</a></li>
+          <li><a href="about.html#contactSection" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-signup">
+        <h4 class="footer-title">Office Hours</h4>
+        <div class="footer-contact-info">
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span>420 Pavilion Ave, Suite 100, New York, NY 10001</span>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.15 15.15 0 0 0 6.5 6.5l2.2-2.2c.27-.27.67-.36 1.01-.24 1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span>(800) 555-0199</span>
+          </div>
+        </div>
+        <form class="signup-form" id="newsletterForm">
+          <input type="email" placeholder="Your Email Address" class="signup-input" required aria-label="Email address for updates">
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+        <div class="social-links">
+          <a href="#" class="social-btn" aria-label="Facebook">FB</a>
+          <a href="#" class="social-btn" aria-label="Twitter">TW</a>
+          <a href="#" class="social-btn" aria-label="Instagram">IG</a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">LN</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 MEDTRUST Healthcare Inc. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       DOCTOR BIO MODALS SYSTEM
+       ========================================== -->
+  <!-- Dr. Rajesh Sen Bio Modal -->
+  <div class="modal-overlay" id="doctorBioModal1">
+    <div class="modal-box">
+      <button class="modal-close-btn" data-close-modal>✕</button>
+      <h3 class="modal-title">Dr. Rajesh Sen</h3>
+      <span class="doctor-specialty" style="display:block; margin-bottom:16px;">Director of Clinical Cardiology</span>
+      <p class="modal-desc" style="font-size:0.875rem; line-height:1.6;">
+        Dr. Sen graduated from the All India Institute of Medical Sciences (AIIMS), New Delhi, and has spent over 15 years developing modern cardiac care, advanced electrophysiology systems, and preventative cardiology wellness blueprints.
+      </p>
+      <a href="patients.html#bookingSection" class="btn btn-dark btn-sans" style="width:100%;">Schedule with Dr. Sen</a>
+    </div>
+  </div>
+
+  <!-- Dr. Ananya Iyer Bio Modal -->
+  <div class="modal-overlay" id="doctorBioModal2">
+    <div class="modal-box">
+      <button class="modal-close-btn" data-close-modal>✕</button>
+      <h3 class="modal-title">Dr. Ananya Iyer</h3>
+      <span class="doctor-specialty" style="display:block; margin-bottom:16px;">Lead Clinical Psychotherapist</span>
+      <p class="modal-desc" style="font-size:0.875rem; line-height:1.6;">
+        Dr. Iyer focuses on interpersonal relationship dynamics, family transition counseling, and mindfulness-based cognitive therapies. She leads our comprehensive emotional well-being and partner counseling initiatives.
+      </p>
+      <a href="patients.html#bookingSection" class="btn btn-dark btn-sans" style="width:100%;">Schedule with Dr. Iyer</a>
+    </div>
+  </div>
+
+  <!-- Dr. Vikram Nair Bio Modal -->
+  <div class="modal-overlay" id="doctorBioModal3">
+    <div class="modal-box">
+      <button class="modal-close-btn" data-close-modal>✕</button>
+      <h3 class="modal-title">Dr. Vikram Nair</h3>
+      <span class="doctor-specialty" style="display:block; margin-bottom:16px;">General Medicine Triage Specialist</span>
+      <p class="modal-desc" style="font-size:0.875rem; line-height:1.6;">
+        Dr. Nair specializes in primary diagnostic triages, lifestyle-driven illness management, and metabolic syndrome health coaching. He guides our clinical intake and comprehensive family medicine programs.
+      </p>
+      <a href="patients.html#bookingSection" class="btn btn-dark btn-sans" style="width:100%;">Schedule with Dr. Nair</a>
+    </div>
+  </div>
+
+  <!-- Dr. Sunita Sharma Bio Modal -->
+  <div class="modal-overlay" id="doctorBioModal4">
+    <div class="modal-box">
+      <button class="modal-close-btn" data-close-modal>✕</button>
+      <h3 class="modal-title">Dr. Sunita Sharma</h3>
+      <span class="doctor-specialty" style="display:block; margin-bottom:16px;">Clinical Pediatrics Lead</span>
+      <p class="modal-desc" style="font-size:0.875rem; line-height:1.6;">
+        Dr. Sharma coordinates milestone tracking for infants and toddlers, adolescent behavioral transitions, and pediatric nutritional counseling. She leads our active youth pediatric outreach department.
+      </p>
+      <a href="patients.html#bookingSection" class="btn btn-dark btn-sans" style="width:100%;">Schedule with Dr. Sharma</a>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODALS SYSTEM (SEARCH & LOGIN)
+       ========================================== -->
+  <!-- Search Modal -->
+  <div class="modal-overlay" id="searchModal">
+    <div class="modal-box">
+      <button class="modal-close-btn" data-close-modal>✕</button>
+      <h3 class="modal-title">Search MEDTRUST</h3>
+      <p class="modal-desc">Type queries to locate doctors, resources, or advice.</p>
+      <div style="display:flex; gap:10px;">
+        <input type="text" placeholder="Enter keywords..." class="form-input" style="flex-grow:1;">
+        <button class="btn btn-dark btn-sans" style="padding:10px 20px;">Search</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-box">
+      <button class="modal-close-btn" data-close-modal>✕</button>
+      <h3 class="modal-title">Patient Portal Login</h3>
+      <p class="modal-desc">Access clinical history, active appointments and billing files.</p>
+      <form style="display:flex; flex-direction:column; gap:16px;">
+        <div>
+          <label class="input-label">Email Address</label>
+          <input type="email" class="form-input" required>
+        </div>
+        <div>
+          <label class="input-label">Password</label>
+          <input type="password" class="form-input" required>
+        </div>
+        <button type="submit" class="btn btn-dark btn-sans" style="margin-top:10px;">Login Account</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>
