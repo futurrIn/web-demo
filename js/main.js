@@ -590,6 +590,8 @@ function initBookingWizard() {
     wizard.querySelector('#summaryApproxTime').textContent = "Approximate Consultation Time: " + approxTime;
   };
 
+  let isFirstLoad = true;
+
   // Update panels display
   const updateWizardDisplay = () => {
     // Toggle active panel
@@ -633,6 +635,18 @@ function initBookingWizard() {
     }
 
     validateCurrentStep();
+
+    // Smoothly scroll to the top of the wizard, compensating for the sticky header
+    if (!isFirstLoad) {
+      const headerOffset = 100;
+      const wizardTop = wizard.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: wizardTop - headerOffset,
+        behavior: 'smooth'
+      });
+    } else {
+      isFirstLoad = false;
+    }
   };
 
   // Button Click events
